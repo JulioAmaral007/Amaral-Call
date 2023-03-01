@@ -8,11 +8,12 @@ import {
   Heading,
   MultiStep,
   Text,
-  TextInput,
+  TextInput
 } from '@ignite-ui/react'
 import { NextSeo } from 'next-seo'
+import { useRouter } from 'next/router'
 import { ArrowRight } from 'phosphor-react'
-import { useFieldArray, useForm, Controller } from 'react-hook-form'
+import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { Container, Header } from '../styles'
 import {
@@ -21,7 +22,7 @@ import {
   IntervalCotainer,
   IntervalDay,
   IntervalInput,
-  IntervalItem,
+  IntervalItem
 } from './styles'
 
 const TimeIntervalsFormSchema = z.object({
@@ -87,6 +88,7 @@ export default function TimeIntervals() {
     },
   })
 
+  const router = useRouter()
   const weekDays = getWeekDays()
 
   const { fields } = useFieldArray({
@@ -100,6 +102,8 @@ export default function TimeIntervals() {
     const { intervals } = data as TimeIntervalsFormOutput
 
     await api.post('/users/time-intervals', { intervals })
+
+    await router.push('/register/update-profile')
   }
 
   return (
@@ -137,7 +141,7 @@ export default function TimeIntervals() {
                         )
                       }}
                     />
-                    <Text>{weekDays[field.weekDay]}</Text>
+                    <Text size="sm">{weekDays[field.weekDay]}</Text>
                   </IntervalDay>
                   <IntervalInput>
                     <TextInput

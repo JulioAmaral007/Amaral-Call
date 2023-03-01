@@ -68,7 +68,7 @@ export default function Register() {
           <Heading as="strong">Bem vindo ao Amaral Call!</Heading>
           <Text>
             Precisamos de algumas informações para criar seu perfil! Ah, você
-            pode editar essas informações depois;.
+            pode editar essas informações depois.
           </Text>
 
           <MultiStep size={4} currentStep={1} />
